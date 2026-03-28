@@ -1,9 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 
 export default function SignupPage() {
+  const router = useRouter()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -16,7 +19,7 @@ export default function SignupPage() {
     setMessage('')
     setLoading(true)
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     })
@@ -28,7 +31,12 @@ export default function SignupPage() {
       return
     }
 
-    setMessage('Registrazione completata. Controlla la mail oppure torna al login.')
+    if (data.user) {
+      router.push('/dashboard')
+      return
+    }
+
+    setMessage('Registrazione completata. Controlla la mail e poi fai login.')
   }
 
   return (
@@ -63,7 +71,7 @@ export default function SignupPage() {
           disabled={loading}
           className="w-full rounded-xl bg-white px-4 py-3 text-black"
         >
-          {loading ? 'Attendi...' : 'Crea account'}
+          {loading ? 'Registrazione...' : 'Crea account'}
         </button>
 
         <p className="text-sm text-white/70">
