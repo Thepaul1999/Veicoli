@@ -1,78 +1,60 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabaseClient'
+import { useState, useEffect } from "react";
 
-export default function loginPage() {
-  const router = useRouter()
+export default function LoginPage() {
+  const [mounted, setMounted] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  async function handlelogin(e: React.FormEvent) {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
+  if (!mounted) {
+    return null;
+  }
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-
-    setLoading(false)
-
-    if (error) {
-      setError(error.message)
-      return
-    }
-
-    router.push('/dashboard')
+  function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    console.log("Login:", { email, password });
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-black p-6 text-white">
+    <main className="min-h-screen bg-neutral-950 text-white flex items-center justify-center p-6">
       <form
-        onSubmit={handlelogin}
-        className="w-full max-w-md space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6"
+        onSubmit={handleLogin}
+        className="w-full max-w-md rounded-2xl border border-white/10 bg-neutral-900 p-6 space-y-4"
       >
-        <h1 className="text-2xl font-bold">login</h1>
+        <h1 className="text-2xl font-semibold">Login</h1>
 
         <input
           type="email"
+          name="email"
+          autoComplete="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-black p-3 text-white placeholder:text-white/40"
+          className="w-full rounded-xl border border-white/10 bg-black p-3 text-white placeholder:text-neutral-500 outline-none"
         />
 
         <input
           type="password"
+          name="password"
+          autoComplete="current-password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-black p-3 text-white placeholder:text-white/40"
+          className="w-full rounded-xl border border-white/10 bg-black p-3 text-white placeholder:text-neutral-500 outline-none"
         />
-
-        {error && <p className="text-red-500">{error}</p>}
 
         <button
           type="submit"
-          disabled={loading}
-          className="w-full rounded-xl bg-white px-4 py-3 text-black"
+          className="w-full rounded-xl bg-white text-black p-3 font-medium"
         >
-          {loading ? 'Accesso...' : 'Accedi'}
+          Entra
         </button>
-
-        <p className="text-sm text-white/70">
-          Non hai un account?{' '}
-          <a href="/signup" className="text-white underline">
-            Registrati
-          </a>
-        </p>
       </form>
     </main>
-  )
+  );
 }
