@@ -1,7 +1,7 @@
+import AdminEditButton from "@/components/AdminEditButton";
 export default function MainPage() {
   return (
-    <html lang="en">
-      <body id="ib7x" className="gjs-t-body">
+    <div id="ib7x" className="gjs-t-body">
         {/* Navbar */}
         <section id="inav" className="gjs-section">
           <div id="ic9y" className="gjs-container">
@@ -465,5 +465,6 @@ export default function MainPage() {
         <section id="ipricing" className="gjs-section">
           <div id="iprcnt" className="gjs-container"></div>
           </section>
-    </body>
-</html>)}
+    </div>
+  );
+}
