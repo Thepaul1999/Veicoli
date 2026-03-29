@@ -1,4 +1,6 @@
 import AdminEditButton from "@/components/AdminEditButton";
+import PublishedMain from "@/components/PublishedMain";
+import Link from "next/link";
 export default function MainPage() {
   return (
     <div id="ib7x" className="gjs-t-body">
@@ -28,9 +30,10 @@ export default function MainPage() {
                     <a id="ilink1" href="#ihero" className="nav-links">
                       Home
                     </a>
-                    <a id="ilink2" href="#ifaqs" className="nav-links">
+                    <a id="ilink2" href="Login" className="nav-links">
                       Login
                     </a>
+                  <AdminEditButton />
                   </nav>
                 </div>
               </div>

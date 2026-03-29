@@ -1,48 +1,53 @@
 ﻿'use client';
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabaseClient';
 
 export default function AdminEditButton() {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     const checkAdmin = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
 
-      if (!user) {
+        if (!user) {
+          setIsAdmin(false);
+          setChecked(true);
+          return;
+        }
+
+        const { data: profile, error } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', user.id)
+          .single();
+
+        if (!error && profile?.role === 'admin') {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      } catch (err) {
+        console.error('Errore controllo admin:', err);
         setIsAdmin(false);
-        setLoading(false);
-        return;
+      } finally {
+        setChecked(true);
       }
-
-      const { data: profile, error } = await supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", user.id)
-        .single();
-
-      if (!error && profile?.role === "admin") {
-        setIsAdmin(true);
-      } else {
-        setIsAdmin(false);
-      }
-
-      setLoading(false);
     };
 
     checkAdmin();
   }, []);
 
-  if (loading || !isAdmin) return null;
+  if (!checked || !isAdmin) return null;
 
   return (
-    <div style={{ padding: "16px 24px" }}>
-      <Link href="/admin/main-editor">Modifica</Link>
-    </div>
+    <Link href="/admin/editor" className="nav-links">
+      Modifica
+    </Link>
   );
 }
