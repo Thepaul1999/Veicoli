@@ -38,7 +38,7 @@ export default function MainPage() {
                       Testimonials
                     </a>
                     <a id="ilink5" href="#ifaqs" className="nav-links">
-                      Contact
+                      Login
                     </a>
                   </nav>
                 </div>
