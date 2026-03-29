@@ -1,4 +1,5 @@
 import AdminEditButton from "@/components/AdminEditButton";
+import { supabase } from "@/lib/supabaseClient";
 import PublishedMain from "@/components/PublishedMain";
 import Link from "next/link";
 export default function MainPage() {
