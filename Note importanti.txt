@@ -1,0 +1,13 @@
+NEXT_PUBLIC_SUPABASE_URL=https://ajlbsodrycezmuktdnqx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGci
+
+https://veicoli-jd4w2b2ic-thepaul1999-5994s-projects.vercel.app/editor
+
+cd C:\Users\paolobo\OneDrive\veicoli-app
+npm run dev
+
+cd C:\Users\paolobo\OneDrive\veicoli-app
+git pull origin main
+git add .
+git commit -m "Aggiornamento veloce"
+git push origin main
