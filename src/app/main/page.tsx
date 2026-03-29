@@ -30,7 +30,7 @@ export default function MainPage() {
                     <a id="ilink1" href="#ihero" className="nav-links">
                       Home
                     </a>
-                    <a id="ilink2" href="Login" className="nav-links">
+                    <a id="ilink2" href="/Login" className="nav-links">
                       Login
                     </a>
                   <AdminEditButton />
