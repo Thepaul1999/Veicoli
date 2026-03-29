@@ -8,7 +8,7 @@ export default function MainPage() {
             <div id="i9devj" className="navbar">
               <div data-gjs="navbar" id="ixfu6" className="navbar-cnt">
                 <a href="/" className="navbar-brand">
-                  <h1 id="ih1">CloudSync</h1>
+                  <h1 id="ih1">test Paolo</h1>
                 </a>
                 <div id="iahka3" className="navbar-menu-toggle">
                   <div data-type-icon="" id="ip0vpf" className="gjs-icon">
@@ -28,16 +28,7 @@ export default function MainPage() {
                     <a id="ilink1" href="#ihero" className="nav-links">
                       Home
                     </a>
-                    <a id="ilink2" href="#ifeatures" className="nav-links">
-                      Features
-                    </a>
-                    <a id="ilink3" href="#ipricing" className="nav-links">
-                      Pricing
-                    </a>
-                    <a id="ilink4" href="#ireviews" className="nav-links">
-                      Testimonials
-                    </a>
-                    <a id="ilink5" href="#ifaqs" className="nav-links">
+                    <a id="ilink2" href="#ifaqs" className="nav-links">
                       Login
                     </a>
                   </nav>
@@ -63,9 +54,7 @@ export default function MainPage() {
                 <h4 id="ih4">Team Collaboration</h4>
                 <h2 id="ih2">Collaborate Seamlessly Across Teams</h2>
                 <span id="iherotext">
-                  CloudSync brings your team together with powerful tools for
-                  project management, file sharing, and real-time communication.
-                  Work smarter, not harder.
+                  ABCD
                 </span>
                 <div
                   data-type-role="flex-row"
@@ -97,8 +86,7 @@ export default function MainPage() {
                 <h4 id="iabtlabel">What's inside</h4>
                 <h2 id="iabttitle">Powerful tools at your fingertips</h2>
                 <span id="iabttext">
-                  CloudSync streamlines your workflow by bringing all your
-                  collaboration tools into one unified platform.
+                  EFG
                 </span>
               </div>
             </div>
@@ -131,8 +119,7 @@ export default function MainPage() {
                 </div>
                 <h3 id="iabt1title">Real-Time Sync</h3>
                 <span id="iabt1text">
-                  Keep your files and projects synchronized across all devices
-                  instantly with our cloud infrastructure.
+                  HGI
                 </span>
               </div>
               <div
