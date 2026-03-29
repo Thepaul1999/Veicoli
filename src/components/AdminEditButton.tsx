@@ -1,52 +1,34 @@
-﻿'use client';
+﻿"use client";
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabaseClient';
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function AdminEditButton() {
+  const [mounted, setMounted] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    const checkAdmin = async () => {
-      try {
-        const {
-          data: { user },
-        } = await supabase.auth.getUser();
-
-        if (!user) {
-          setIsAdmin(false);
-          setChecked(true);
-          return;
-        }
-
-        const { data: profile, error } = await supabase
-          .from('profiles')
-          .select('role')
-          .eq('id', user.id)
-          .single();
-
-        if (!error && profile?.role === 'admin') {
-          setIsAdmin(true);
-        } else {
-          setIsAdmin(false);
-        }
-      } catch (err) {
-        console.error('Errore controllo admin:', err);
-        setIsAdmin(false);
-      } finally {
-        setChecked(true);
-      }
-    };
-
-    checkAdmin();
+    setMounted(true);
+    const admin = sessionStorage.getItem("isAdmin") === "true";
+    setIsAdmin(admin);
   }, []);
 
-  if (!checked || !isAdmin) return null;
+  if (!mounted || !isAdmin) return null;
 
   return (
-    <Link href="/admin/editor" className="nav-links">
+    <Link
+      href="/dashboard"
+      className="nav-links"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "8px 14px",
+        borderRadius: "10px",
+        border: "1px solid currentColor",
+        cursor: "pointer",
+      }}
+    >
       Modifica
     </Link>
   );
