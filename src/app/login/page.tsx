@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 
-export default function LoginPage() {
+export default function loginPage() {
   const router = useRouter()
 
   const [email, setEmail] = useState('')
@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function handleLogin(e: React.FormEvent) {
+  async function handlelogin(e: React.FormEvent) {
     e.preventDefault()
     setError('')
     setLoading(true)
@@ -35,10 +35,10 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-black p-6 text-white">
       <form
-        onSubmit={handleLogin}
+        onSubmit={handlelogin}
         className="w-full max-w-md space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6"
       >
-        <h1 className="text-2xl font-bold">Login</h1>
+        <h1 className="text-2xl font-bold">login</h1>
 
         <input
           type="email"

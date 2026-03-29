@@ -31,7 +31,7 @@ export default function EditorPage() {
           <section style="padding: 40px; text-align: center;">
             <h1>La mia pagina editabile</h1>
             <p>Qui puoi iniziare a modificare il contenuto.</p>
-            <a href="/login">Login</a>
+            <a href="/login">login</a>
           </section>
         `,
       style: savedProject
@@ -157,7 +157,7 @@ export default function EditorPage() {
             <section style="padding: 40px; text-align: center;">
               <h1>La mia pagina editabile</h1>
               <p>Qui puoi iniziare a modificare il contenuto.</p>
-              <a href="/login">Login</a>
+              <a href="/login">login</a>
             </section>
           `);
 
