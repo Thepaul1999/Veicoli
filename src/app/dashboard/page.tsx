@@ -1,108 +1,38 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabaseClient'
+import Link from "next/link";
 
-export default function loginPage() {
-  const router = useRouter()
-
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [message, setMessage] = useState('')
-  const [loading, setLoading] = useState(false)
-
-  async function handlelogin(e: React.FormEvent) {
-    e.preventDefault()
-    setError('')
-    setMessage('')
-    setLoading(true)
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-
-    setLoading(false)
-
-    if (error) {
-      setError(error.message)
-      return
-    }
-
-    router.push('/dashboard')
-  }
-
-  async function handleSignup() {
-    setError('')
-    setMessage('')
-    setLoading(true)
-
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    })
-
-    setLoading(false)
-
-    if (error) {
-      setError(error.message)
-      return
-    }
-
-    setMessage('Registrazione completata. Controlla la mail oppure prova il login.')
-  }
-
+export default function DashboardPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-black p-6 text-white">
-      <form
-        onSubmit={handlelogin}
-        className="w-full max-w-md space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6"
-      >
-        <h1 className="text-2xl font-bold">login</h1>
+    <main className="min-h-screen bg-neutral-950 text-white p-6">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-8 flex items-center justify-between">
+          <h1 className="text-3xl font-bold">Dashboard Admin</h1>
+          <Link
+            href="/main"
+            className="rounded-xl bg-white px-4 py-2 text-black font-medium"
+          >
+            Vai al sito
+          </Link>
+        </div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-black p-3 text-white placeholder:text-white/40"
-        />
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="rounded-2xl border border-white/10 bg-neutral-900 p-5">
+            <h2 className="text-lg font-semibold mb-2">Hero</h2>
+            <p className="text-neutral-400">Qui poi modificherai titolo e sottotitolo.</p>
+          </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-black p-3 text-white placeholder:text-white/40"
-        />
+          <div className="rounded-2xl border border-white/10 bg-neutral-900 p-5">
+            <h2 className="text-lg font-semibold mb-2">Veicoli</h2>
+            <p className="text-neutral-400">Qui poi modificherai elenco e dettagli.</p>
+          </div>
 
-        {error && <p className="text-red-500">{error}</p>}
-        {message && <p className="text-green-400">{message}</p>}
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded-xl bg-white px-4 py-3 text-black"
-        >
-          {loading ? 'Attendi...' : 'Accedi'}
-        </button>
-
-        <p className="text-sm text-white/70">
-          Non hai un account?
-        </p>
-
-        <button
-          type="button"
-          onClick={handleSignup}
-          disabled={loading}
-          className="w-full rounded-xl border border-white/10 px-4 py-3 text-white"
-        >
-          Registrati
-        </button>
-      </form>
+          <div className="rounded-2xl border border-white/10 bg-neutral-900 p-5">
+            <h2 className="text-lg font-semibold mb-2">Contatti</h2>
+            <p className="text-neutral-400">Qui poi modificherai testo e pulsanti.</p>
+          </div>
+        </div>
+      </div>
     </main>
-  )
-  
+  );
 }
