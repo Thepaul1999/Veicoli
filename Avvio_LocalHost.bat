@@ -1,3 +1,3 @@
-cd C:\Users\paolobo\OneDrive\veicoli-app
+cd C:\Users\paolobo\OneDrive\DataBase\sito-agenzia
 npm run dev
 pause
